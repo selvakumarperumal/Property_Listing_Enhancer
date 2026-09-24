@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Property Listing Enhancer</title>
+    <meta name="description" content="Turn plain property details into engaging real estate listings." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">🏡</span>
+        <span>Property Listing Enhancer</span>
+      </div>
+      <div id="status" class="status" data-state="checking" title="Backend status">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="status-text">Checking backend…</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h1>Turn plain property details into listings that sell</h1>
+        <p>Describe a property in a few words and get polished, engaging listing copy.</p>
+      </section>
+
+      <form id="enhance-form" class="card" novalidate>
+        <label for="description" class="label">Property details</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="5"
+          minlength="3"
+          maxlength="2000"
+          placeholder="e.g. 3 bed apartment downtown with view, balcony, 2 bathrooms"
+          required
+        ></textarea>
+        <div class="row">
+          <div class="examples" aria-label="Examples">
+            <span class="muted">Try:</span>
+            <button type="button" class="chip">Cozy 2-bedroom house with small garden</button>
+            <button type="button" class="chip">3 bed apartment downtown with view</button>
+            <button type="button" class="chip">Studio apartment, good location, small kitchen</button>
+          </div>
+          <span id="counter" class="muted counter">0 / 2000</span>
+        </div>
+        <div class="actions">
+          <button type="submit" id="submit" class="primary">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="submit-label">Enhance listing</span>
+          </button>
+          <button type="button" id="clear" class="ghost">Clear</button>
+        </div>
+        <p id="error" class="error" role="alert" hidden></p>
+      </form>
+
+      <section id="result" class="card result" hidden aria-live="polite">
+        <div class="result-head">
+          <h2>Enhanced listing</h2>
+          <div class="result-tools">
+            <button type="button" id="copy" class="ghost small">Copy</button>
+          </div>
+        </div>
+        <div id="enhanced" class="enhanced"></div>
+        <details class="original">
+          <summary>Original description</summary>
+          <p id="original"></p>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer muted">Powered by LangChain &amp; HuggingFace</footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
